@@ -14,7 +14,7 @@
     <!-- 注册HandlerMapper、HandlerAdapter两个映射类 -->
      <mvc:annotation-driven />
     <!-- 配置扫描的包 -->
-    <context:component-scan base-package="com.springdemo.controller" use-default-filters="false">
+    <context:component-scan base-package="com.exam.controller" use-default-filters="false">
     <context:include-filter type="annotation"
         expression="org.springframework.stereotype.Controller" />
         </context:component-scan>
@@ -26,15 +26,18 @@
 	        <!-- 进行拦截：/**表示拦截所有controller -->
 	        <mvc:mapping path="/**" />
 	    	 <!-- 不进行拦截 -->
-	        <mvc:exclude-mapping path="/login/in"/>
+	        <mvc:exclude-mapping path="/*.html"/>
 	       
-	        <bean class="com.exam.interceptor.LogInterceptor"/>  
+	        <bean class="com.exam.interceptor.LogInterceptor"/> 
 	    </mvc:interceptor>  
 	</mvc:interceptors>     
     
-
+	
     <!-- 访问静态资源 -->
+    <mvc:resources mapping="/files/**" location="/WEB-INF/files/" />
     <mvc:default-servlet-handler />
+    
+    <bean class="com.exam.util.InitListener"/>
     
     <bean 
         class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
@@ -57,7 +60,7 @@
                 <!-- <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/> -->
                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                     <property name="prefix" value="/WEB-INF/view/"/>
-                    <property name="suffix" value=".jsp"/>
+                    <property name="suffix" value=".html"/>
                 </bean>
             </list>
         </property>

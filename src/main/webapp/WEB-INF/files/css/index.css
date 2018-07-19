@@ -1,0 +1,252 @@
+.head{
+    background: #ddd;
+    height: 80px;
+
+}
+.head img{
+    height: 100%;
+}
+.navList{
+    padding: 0 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.navList li{
+    display: inline-block;
+    padding: 20px 30px;
+    border-right: 1px solid #ddd;
+}
+.navList li:nth-child(1){
+    border-left: 1px solid #ddd;
+}
+.hDiv{
+    height: 100px;
+    line-height: 100px;
+    text-align: left;
+}
+.logo{
+    height: 100%;
+    margin-right: 150px;
+}
+.ct-logo h3{
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 80px;
+}
+.userName{
+    margin-right: 30px;
+    color: #fff;
+    font-size: 15px;
+    line-height: 80px;
+}
+.login,.signin{
+    cursor: pointer;
+    display: inline-block;
+}
+.logOut{
+    cursor: pointer;
+    display: inline-block;
+}
+.container{
+    width: 1250px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+.subject{
+    position: relative;
+    margin-bottom: 20px;
+    min-height: 200px;
+}
+.subject .subitem div:not(:first-child){
+    font-size: 14px;
+    text-align: left;
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+.subject .subitem div:first-child h4{
+    font-size: 24px;
+
+}
+.ct i{
+    width: 50px;
+    height: 50px;
+    line-height: 30px;
+    text-align: center;
+    color: #d58512;
+    font-style: unset;
+    display: inline-block;
+    font-size: 30px;
+    border: 2px solid #d58512;
+    padding: 8px;
+    border-radius: 50%;
+    margin-right: 10px;
+    /*position: relative;*/
+    /*top: 1px;*/
+    /*display: inline-block;*/
+    /*font-family: 'Glyphicons Halflings';*/
+    /*font-style: normal;*/
+    /*font-weight: 400;*/
+    /*line-height: 1;*/
+    /*-webkit-font-smoothing: antialiased;*/
+}
+.subject .subitem div:first-child h4 i{
+   color:#d58512;
+
+}
+.subject .detail div:first-child h4 i{
+    color:#d58512;
+
+}
+.subject .detail div:first-child h4{
+    font-size: 24px;
+
+}
+.subject .subitem{
+    /*padding: 20px;*/
+}
+.subject .detail{
+    padding: 20px;
+    position:absolute;
+    top:0;
+    left: 0;
+    display: none;
+    z-index: 10;
+    background: #fff;
+    border: 1px solid transparent;
+}
+.subject:hover .subitem{
+    opacity: 0;
+}
+.subject:hover .detail{
+   display: block;
+    z-index: 100;
+    border: 1px solid #a94442;
+}
+.subject .detail div:not(:first-child){
+    font-size: 14px;
+    text-align: left;
+    padding: 10px;
+}
+.subject .detail div:not(:first-child):hover{
+    font-size: 14px;
+    text-align: left;
+    color: #a94442;
+
+    cursor: pointer;
+}
+.search{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.search input{
+    padding-left: 10px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    width: 350px;
+    height: 45px;
+    display: inline-block;
+    margin-right: 30px;
+}
+.search button{
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: #ddd;
+    padding: 5px;
+    width: 90px;
+    height: 45px;
+    font-size: 15px;
+    color: #000;
+    display: inline-block;
+}
+.tName{
+    margin-top: 50px;
+}
+.tName h3{
+    margin-bottom: 20px;
+}
+.tName>div{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+   padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+.tName>div:hover{
+    background: #f9f9f9;
+    color: #c9302c;
+
+}
+.commomModal .modal-dialog{
+    margin-top: 200px;
+    width: 400px;
+
+}
+.commomModal .modal-header{
+    text-align: center;
+}
+.commomModal .modal-footer{
+    border-top: none;
+    padding: 0 15px;
+}
+.control-label{
+    padding: 0;
+}
+.commomModal .modal-content{
+    margin-top: 200px;
+    padding:0 30px;
+    padding-bottom: 30px;
+
+}
+.regist{
+    color: #e4393c;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.loginAgain{
+    color: #e4393c;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.footer{
+   margin-top: 130px;
+    background: #25303c;
+    height: 200px;
+    padding-top: 40px;
+    box-sizing: border-box;
+}
+.foot_menu{
+
+   text-align: center;
+    margin: 0 auto;
+}
+.foot_menu>li{
+    display: inline-block;
+    vertical-align: middle;
+
+}
+.foot_menu>li:last-child a{
+    border-right: none;
+
+}
+.foot_menu>li>a{
+    display: inline-block;
+    vertical-align: middle;
+    padding:0 22px;
+    border-right: 1px solid #fff;
+    font-size: 12px;
+    color: #c9cacb;
+    box-sizing: border-box;
+}
+.footer>p{
+    box-sizing: border-box;
+    padding: 30px 0;
+    text-align: center;
+    color: #c9cacb;
+}

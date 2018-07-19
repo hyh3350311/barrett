@@ -1,0 +1,28 @@
+env: product
+test:
+    db:
+        jdbcUrl: jdbc:mysql://127.0.0.1:3306/bullet?characterEncoding=utf-8
+        user: root
+        password: root
+        driver: com.mysql.jdbc.Driver
+    redis:
+        host: 10.100.2.90
+        port:6379
+    config:
+        max_query: 100
+        hottopic_display_size: 20
+        hottopic_time: 180
+product:
+    db:
+        jdbcUrl: jdbc:mysql://127.0.0.1:3306/bullet?characterEncoding=utf-8
+        user: admin
+        password: AdminDaanlook2018!@#
+        driver: com.mysql.jdbc.Driver
+    redis:
+        host: 127.0.0.1
+        port:6379
+    config:
+        max_query: 100
+        hottopic_display_size: 20
+        hottopic_time: 180
+
