@@ -59,8 +59,8 @@
             <list>
                 <!-- <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/> -->
                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-                    <property name="prefix" value="/WEB-INF/view/"/>
-                    <property name="suffix" value=".html"/>
+                    <property name="prefix" value="/WEB-INF/files/"/>
+                    <property name="suffix" value=".html.jsp"/>
                 </bean>
             </list>
         </property>

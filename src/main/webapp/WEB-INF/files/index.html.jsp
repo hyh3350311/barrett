@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script>
 
         var oMeta = document.createElement('title');
-
         var ele = document.createElement('meta');
         var ele1 = document.createElement('meta');
         var ajax = new XMLHttpRequest();
@@ -15,7 +17,7 @@
         ajax.send();
         //步骤四:注册事件 onreadystatechange 状态改变就会调用
         ajax.onreadystatechange = function () {
-            if (ajax.readyState==4 &&ajax.status==200) {
+            if (ajax.readyState==4&&ajax.status==200) {
                 //步骤五 如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的
                 var data=JSON.parse(ajax.responseText)
                 console.log(data.data);//输入相应的内容
@@ -31,204 +33,141 @@
         document.getElementsByTagName('head')[0].appendChild(ele);
         document.getElementsByTagName('head')[0].appendChild(ele1);
     </script>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/common.css"/>
-    <link rel="stylesheet" href="css/swiper.min.css"/>
-    <link rel="stylesheet" href="css/index.css"/>
-    <link rel="icon" href="css/favicon.ico" type="image/x-icon">
+    <link type="text/css" rel="stylesheet" href="css/css.css"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/banner.js"></script>
+    <script src="js/Slide.js"></script>
 </head>
+
 <body>
-<header class="navbar clearfix head">
-    <div class="fl logo"></div>
-    <div class="fl ct-logo"><h3 style="font-family: Monaco"><span>欢迎使用答案库</span></h3></div>
-    <div class="fr userName">你还未登录，请先 <span class="login">登陆</span> | <span class="signin">注册</span></div>
-</header>
-<!--<div class="swiper-container" style="width: 100%">-->
-<!--<div class="swiper-wrapper">-->
-<!--<div class="swiper-slide">-->
-<!--<img src="img/11.jpg" alt=""/>-->
-<!--</div>-->
-<!--<div class="swiper-slide"> <img src="img/22.jpg" alt=""/>-->
+<div class="header">
+    <a href="index.html"><img src="images/logo.png" width="212" height="62" class="logo"/></a>
+    <ul class="ul_header_r">
+        <li>
+            <samp class="ss"><input type="text" class="sr searchName" onmouseover="if(this.value=='请输入关键词...'){this.value=''}"
+                                    value="请输入关键词..."/>
+                <input type="button" class="btn01"  id="search" align="right"/></input>
+            </samp>
+        </li>
+        <li class="inlogin"><span>***，欢迎登陆</span> <button class="logout">退出登陆</button></li>
+        <li class="dl-bt"><a href="login.html" class="a_dr">用户登录</a></li>
+        <li class="zc-bt"><a href="signIn.html" class="a_zc">立即注册</a></li>
+    </ul>
+</div>
+<div class="menu">
+    <ul class="ul_menu">
+        <li><a href="#">网站首页</a></li>
+        <li>|</li>
+        <li><a href="#">职业干部</a></li>
+        <li>|</li>
+        <li><a href="#">继续教育</a></li>
+        <li>|</li>
+        <li><a href="#">技能鉴定</a></li>
+        <li>|</li>
+        <li><a href="#">职称资格</a></li>
+        <li>|</li>
+        <li><a href="#">高等教育</a></li>
+        <li>|</li>
+        <li><a href="#">诗歌常识</a></li>
+        <li>|</li>
+        <li><a href="#">经济建设</a></li>
+    </ul>
+</div>
+<div class="content">
+    <!-- header -->
 
-<!--</div>-->
-<!--<div class="swiper-slide"> <img src="img/33.jpg" alt=""/>-->
+    <!-- header -->
+    <!-- menu -->
 
-<!--</div>-->
-<!--<div class="swiper-slide"> <img src="img/44.jpg" alt=""/>-->
+    <!-- menu -->
+    <!-- banner -->
+    <div style="display: none">
+	    <c:forEach var="cat" items="${catgory_list}">
+	    	<a href="${domain}/subject/c${cat.cid}.html">${cat.cname}</a>
+	    </c:forEach>
+	    <c:forEach var="sub" items="${subject_list}">
+	    	<a href="${domain}/subject/s${sub.sid}.html">${sub.sname}</a>
+	    </c:forEach>
+	    <c:forEach var="hot" items="${hot_list}">
+	    	<a href="${domain}/answer/t${hot.id}.html">${hot.tname}</a>
+	    </c:forEach>
+	    <c:forEach var="top" items="${new_topic_list}">
+	    	<a href="${domain}/answer/t${top.id}.html">${top.tname}</a>
+	    </c:forEach>
+    </div>
+    <div class="banner">
+        <div class="new_banner">
+            <ul class="rslides f426x240">
+                <li><a href="javascript:"><img src="images/banner01.jpg" width="1200" height="250"/></a></li>
+                <li><a href="javascript:"><img src="images/banner02.jpg" width="1200" height="250"/></a></li>
+                <li><a href="javascript:"><img src="images/banner03.jpg" width="1200" height="250"/></a></li>
+                <li><a href="javascript:"><img src="images/banner04.jpg" width="1200" height="250"/></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- banner -->
+    <!-- zygb -->
+    <div class="topic">
 
-<!--</div>-->
-<!--</div>-->
-<!--<div class="swiper-pagination"></div>-->
-<!--<div class="swiper-button-prev"></div>-->
-<!--<div class="swiper-button-next"></div>-->
-<!--</div>-->
-<div class="">
-
-    <div class="row search container">
-        <div class="col-md-6 hDiv"><img style="width: 200px;height: 100px" src="img/123.png" alt=""/></div>
-       <div class="col-md-6 hDiv" > <input class="searchName" type="text" placeholder="点此输入试题搜索答案" onfocus="this.placeholder=''"
-                                     onblur="this.placeholder='点此输入试题搜索答案'"/>
-           <button class="btn btn-default" id="search">搜索</button></div>
+                <div class="zygb_nr_right">
+                    <span class="span_rdda">【热点答案】</span>
+                    <dl class="dl_rdda">
+                    </dl>
+                </div>
 
     </div>
-    <!--<div class="row navHead" style="margin-bottom: 30px;padding: 0 30px">-->
-        <!--<div class="col-md-1">首页</div>-->
-        <!--<div class="col-md-10 subNav" style="position: relative;height: 60px;background: #d58512;overflow: hidden;">-->
-            <!--<ul class="navList" >-->
-                <!--<li>1234</li>-->
-                <!--<li>123</li>-->
-                <!--<li>123</li>-->
-                <!--<li>123</li>-->
-                <!--<li>123</li>-->
-            <!--</ul>-->
-        <!--</div>-->
-        <!--<div class="col-md-1">123</div>-->
-    <!--</div>-->
-    <div class="row ct container">
-
+    <div class="newTopic">
+        <div class="zygb">
+            <div class="zygb_top"><span class="span_zygb_bt">最新试题</span></div>
+            <div class="clear"></div>
+        </div>
     </div>
-    <div class="tName row container">
-        <h3>最新试题</h3>
+    <!-- zxst -->
+    <!-- footer -->
 
-        <!--<div class="col-md-6">亲吻撒旦卡萨丁撒娇的垃圾了卡萨丁了库萨克多久啊算了肯德基阿历克斯</div>-->
-        <!--<div class="col-md-6">亲吻撒旦卡萨丁撒娇的垃圾了卡萨丁了库萨克多久啊算了肯德基阿历克斯</div>-->
-        <!--<div class="col-md-6">亲吻撒旦卡萨丁撒娇的垃圾了卡萨丁了库萨克多久啊算了肯德基阿历克斯亲吻撒旦卡萨丁撒娇的垃圾了卡萨丁了库萨克多久啊算了肯德基阿历克斯</div>-->
-        <!--<div class="col-md-6">亲吻撒旦卡萨丁撒娇的垃圾了卡萨丁了库萨克多久啊算了肯德基阿历克斯</div>-->
-        <!--<div class="col-md-6">亲吻撒旦卡萨丁撒娇的垃圾了卡萨丁了库萨克多久啊算了肯德基阿历克斯</div>-->
-        <!--<div class="col-md-6">亲吻撒旦卡萨丁撒娇的垃圾了卡萨丁了库萨克多久啊算了肯德基阿历克斯</div>-->
+    <!-- footer -->
+
+    <!-- dak -->
+    <div class="dak_list">
+        <div class="dak_list_nr">
+            <span class="span_dtk_bt">答案库</span>
+            <ul class="ul_dak_list">
+
+            </ul>
+        </div>
     </div>
+    <!-- dak -->
+
+    <script language="javascript">
+//        $(function () {
+//            $(window).scroll(function () {
+//                var sctop = $(document).scrollTop();
+//                if (sctop >= 150) {
+//                    $(".dak_list").addClass("fiexd");
+//                } else {
+//                    $(".dak_list").removeClass("fiexd");
+//                }
+//            });
+//        });
+//        jQuery(".ul_dak_list").slide({
+//            type: "menu",
+//            titCell: "li",
+//            targetCell: ".sub",
+//            delayTime: 0,
+//            triggerTime: 0,
+//            defaultPlay: false,
+//            returnDefault: true
+//        });
+    </script>
 </div>
 <div class="footer">
-    <ul class="foot_menu">
-        <li><a href="">首页</a></li>
-        <li><a href="">企业信息</a></li>
-        <li><a href="">产品与解决方案</a></li>
-        <li><a href="">服务支持</a></li>
-        <li><a href="">联系我们</a></li>
-    </ul>
-    <p>答案库  版权所有  版权所有  2009-2018  湘ICP备15007069号 </p>
+    <p><a href="#">关于我们</a>|<a href="#">付款方式</a>|<a href="#">广告联系</a>|<a href="#">联系我们</a>|<a href="#">网站地图</a>|<a
+            href="#">网站申明</a>|<a href="#">友情链接</a>|<a href="#">网站招聘</a>|<a href="#">帮助中心</a></p>
+
+    <p>答案库&nbsp;&nbsp;版权所有&nbsp;&nbsp;2009-2018&nbsp;&nbsp;湘ICP备18012610号 </p>
 </div>
-<div class="modal fade commomModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content denglu">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">登陆</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label for="" class="col-sm-2 control-label">用户名</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="userName" placeholder="请输入用户名">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-sm-2 control-label" >密码</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control"id="pwd" placeholder="请输入用密码">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10 col-sm-offset-2">
-                            <p>没有账号，<span class="regist">免费注册</span></p>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-            <div class=" modal-footer ">
-                <button type="button" class="btn btn-primary btn-block" id="login">登陆</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-        <!-- 注册-->
-        <div class="modal-content zhuce">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">注册</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label for="" class="col-sm-2 control-label">用户名</label>
-
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="uname" placeholder="请输入用户名">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-sm-2 control-label">密码</label>
-
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="rpwd" placeholder="请输入用密码">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-sm-2 control-label">确认密码</label>
-
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="pwdAgain" placeholder="请确认密码">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-sm-2 control-label" >电话</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control"id="phone" placeholder="请输入用电话">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-sm-2 control-label" >邮箱</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control"id="email" placeholder="请输入邮箱">
-                        </div>
-                    </div>
-                    <div class="form-group ">
-                        <div class="col-sm-10 col-sm-offset-2">
-                            <p>已有账号，<span class="loginAgain">直接登陆</span></p>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-            <div class=" modal-footer  ">
-                <button type="button" class="btn btn-primary btn-block confirmRegist">注册</button>
-            </div>
-        </div>
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
 </body>
-<script src="lib/jquery.min.js"></script>
-<script src="lib/swiper.min.js"></script>
-<script src="lib/bootstrap.min.js"></script>
 <script src="js/common.js"></script>
 <script src="js/index.js"></script>
-<script>
-    window.onload = function () {
-        var mySwiper = new Swiper('.swiper-container', {
-
-            autoplay: {
-                delay: 4000,
-                stopOnLastSlide: false,
-                disableOnInteraction: true,
-            },
-            // 如果需要分页器
-            pagination: {
-                el: '.swiper-pagination',
-            },
-            // 如果需要前进后退按钮
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        })
-    }
-
-</script>
 </html>

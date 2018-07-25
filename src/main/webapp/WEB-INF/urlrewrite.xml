@@ -9,9 +9,27 @@ PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
          <to type="redirect">/Struts/$1</to> 
 </rule> 
  -->
-  <rule> 	
+ <rule> 	
+        <from>^/signIn.html$</from> 
+        <to>/files/signIn.html</to> 
+</rule>
+ <rule> 	
+        <from>^/topicList.html?(.+)$</from> 
+        <to>/files/topicList.html?$1</to> 
+</rule>
+ 
+<rule> 	
+        <from>^/login.html$</from> 
+        <to>/files/login.html</to> 
+</rule>
+
+<rule> 	
+         <from>^/$</from> 
+         <to>/jsp/index</to> 
+</rule>
+<rule> 	
          <from>^/index.html$</from> 
-         <to type="redirect">./</to> 
+         <to>/jsp/index</to> 
 </rule>
   <rule> 	
          <from>^/answer/index.html$</from> 
@@ -19,7 +37,7 @@ PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
 </rule>
   <rule> 	
          <from>^/answer.html?(.+)$</from> 
-         <to>/files/answer.html?$1</to> 
+         <to>/files/answer.html.jsp?$1</to> 
 </rule>  
  <rule> 	
          <from>^/topic.html?(.+)$</from> 
@@ -31,11 +49,16 @@ PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
 </rule>
  
  <rule> 
-         <from>^/answer/a([0-9]+).html$</from> 
-         <to>/files/answer.html?id=$1</to> 
+         <from>^/answer/t([0-9]+).html$</from> 
+         <to>/jsp/answer?tid=$1</to> 
 </rule>
+
  <rule> 	
          <from>^/answer/(\w+)/(.+)$</from> 
+         <to>/files/$1/$2</to> 
+</rule>
+ <rule> 	
+         <from>^/subject/(\w+)/(.+)$</from> 
          <to>/files/$1/$2</to> 
 </rule>
 
@@ -62,6 +85,20 @@ PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
 <rule> 	
          <from>^/img/(.+)$</from> 
          <to>/files/img/$1</to> 
+</rule>
+
+
+<rule> 	
+         <from>^/images/(.+)$</from> 
+         <to>/files/images/$1</to> 
+</rule>
+ <rule> 
+         <from>^/subject/s([0-9]+).html$</from> 
+         <to>/jsp/subject?sid=$1</to> 
+</rule>
+ <rule> 
+         <from>^/subject/c([0-9]+).html$</from> 
+         <to>/jsp/subject?cid=$1</to> 
 </rule>
  <!-- 
   <outbound-rule>
