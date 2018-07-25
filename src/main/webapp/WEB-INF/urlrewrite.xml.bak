@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE urlrewrite 
+PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN" 
+"http://tuckey.org/res/dtds/urlrewrite3.0.dtd"> 
+<urlrewrite> 
+<!-- 
+ <rule> 
+         <from>^/demo/(\w+).html$</from> 
+         <to type="redirect">/Struts/$1</to> 
+</rule> 
+ -->
+ <rule> 	
+        <from>^/signIn.html$</from> 
+        <to>/files/signIn.html</to> 
+</rule>
+ <rule> 	
+        <from>^/topicList.html?(.+)$</from> 
+        <to>/files/topicList.html?$1</to> 
+</rule>
+ 
+<rule> 	
+        <from>^/login.html$</from> 
+        <to>/files/login.html</to> 
+</rule>
+
+<rule> 	
+         <from>^/index.html$</from> 
+         <to>/jsp/index</to> 
+</rule>
+  <rule> 	
+         <from>^/answer/index.html$</from> 
+         <to type="redirect">../</to> 
+</rule>
+  <rule> 	
+         <from>^/answer.html?(.+)$</from> 
+         <to>/files/answer.html?$1</to> 
+</rule>  
+ <rule> 	
+         <from>^/topic.html?(.+)$</from> 
+         <to>/files/topic.html?$1</to> 
+</rule> 
+ <rule> 	
+         <from>^/answer/(\w+)/(.+)$</from> 
+         <to>/files/$1/$2</to> 
+</rule>
+ 
+ <rule> 
+         <from>^/answer/t([0-9]+).html$</from> 
+         <to>/files/answer.html?id=$1</to> 
+</rule>
+
+ <rule> 	
+         <from>^/answer/(\w+)/(.+)$</from> 
+         <to>/files/$1/$2</to> 
+</rule>
+ <rule> 	
+         <from>^/subject/(\w+)/(.+)$</from> 
+         <to>/files/$1/$2</to> 
+</rule>
+
+ <rule> 
+         <from>^/topic/s([0-9]+).html$</from> 
+         <to>/files/topic.html?sid=$1</to> 
+</rule>
+ <rule> 	
+         <from>^/topic/(\w+)/(.+)$</from> 
+         <to>/files/$1/$2</to> 
+</rule>
+ <rule> 	
+         <from>^/lib/(.+)$</from> 
+         <to>/files/lib/$1</to> 
+</rule>
+<rule> 	
+         <from>^/js/(.+)$</from> 
+         <to>/files/js/$1</to> 
+</rule>
+<rule> 	
+         <from>^/css/(.+)$</from> 
+         <to>/files/css/$1</to> 
+</rule>
+<rule> 	
+         <from>^/img/(.+)$</from> 
+         <to>/files/img/$1</to> 
+</rule>
+
+
+<rule> 	
+         <from>^/images/(.+)$</from> 
+         <to>/files/images/$1</to> 
+</rule>
+ <rule> 
+         <from>^/subject/s([0-9]+).html$</from> 
+         <to>/files/subject.html?sid=$1</to> 
+</rule>
+ <rule> 
+         <from>^/subject/c([0-9]+).html$</from> 
+         <to>/files/subject.html?cid=$1</to> 
+</rule>
+ <!-- 
+  <outbound-rule>
+       <from>^/files/a(\w+).html$</from> 
+         <to type="redirect" >/barrett/files/answer.html?id=$1</to> 
+    </outbound-rule>
+    -->
+</urlrewrite> 
