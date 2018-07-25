@@ -5,6 +5,15 @@ public class Config {
 	private int max_get_topic = 100;
 	private int hottopic_display_szie=20;
 	private int hottopic_time=180;
+	private String domain = "www.daanlook.com";
+	
+	
+	public String getDomain() {
+		return domain;
+	}
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
 	public int getHottopic_display_szie() {
 		return hottopic_display_szie;
 	}

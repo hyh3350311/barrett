@@ -163,5 +163,32 @@ public class CategoryController {
 		}
 		return c;
 	}
+	
+	public static List<Category> listCatgory () throws IOException {
+
+		Connection conn = null;
+		try {
+			conn = DBConnector.getConnection();
+			String sql = "select cid,cname ,ob from bullet.category where status=1 order by ob";
+			PreparedStatement statment = conn.prepareStatement(sql);
+			ResultSet rs = statment.executeQuery();
+			ReturnObject m = new ReturnObject();
+			List<Category> list= new ArrayList<Category>();
+			while (rs.next()) {
+				Category c = new Category();
+				
+				c.setCid(rs.getInt(1));
+				c.setCname(rs.getString(2));
+				c.setOrder(rs.getInt(3));
+				list.add(c);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Utils.closeConnection(conn);
+		}
+		return null;
+	}
 
 }

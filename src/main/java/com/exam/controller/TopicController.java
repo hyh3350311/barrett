@@ -310,7 +310,7 @@ public class TopicController {
 		return false;
 	}
 
-	private String gnerateListWhere(Topic topic) {
+	private static String gnerateListWhere(Topic topic) {
 		String where = "";
 		if (topic.getType() > 0) {
 			where += " and type=" + topic.getType();
@@ -345,7 +345,7 @@ public class TopicController {
 		return count;
 	}
 
-	public List<Topic> listTopic(Connection conn, Topic _topic, int start_page, int page_size) throws SQLException {
+	public static List<Topic>  listTopic(Connection conn, Topic _topic, int start_page, int page_size) throws SQLException {
 		String where = gnerateListWhere(_topic);
 		String sql = "select id,tname,type,cid,sid,answer_item,answer,analysis,img_url ,create_date from topic "+where+" order by id desc limit ?,? ";
 		PreparedStatement statment = conn.prepareStatement(sql);
@@ -371,7 +371,7 @@ public class TopicController {
 		return list;
 	}
 
-	public Topic selectOneTopic(Connection conn, Topic topic) throws SQLException {
+	public static Topic selectOneTopic(Connection conn, Topic topic) throws SQLException {
 		String sql = "select id,tname,type,cid,sid,answer_item,answer,analysis,img_url from topic where id=?";
 		PreparedStatement statment = conn.prepareStatement(sql);
 		statment.setInt(1, topic.getId());
@@ -767,4 +767,89 @@ public class TopicController {
 		Utils.reponse(response, re);
 	}
 	
+	
+	public static List<Topic> getHottopic(Integer cid,Integer sid)throws IOException {
+		Connection conn = DBConnector.getConnection();
+		try {
+			String timedelta=Utils.timedelta(Config.getConfig().getHottopic_time());
+			int display_size = Config.getConfig().getHottopic_display_szie();
+			String count_sql = "select c.id,c.tname,c.sid from topic c LEFT JOIN access_record a on c.id=a.tid and date>=? where c.cid=? order by count desc,c.id desc limit ?";
+			if (sid !=null && sid >0) {
+				count_sql = "select c.id,c.tname,c.sid from topic c LEFT JOIN access_record a on c.id=a.tid and date>=? where c.cid=?  and c.sid=? order by count desc,c.id desc limit ?";
+			}
+			PreparedStatement statment = conn.prepareStatement(count_sql);
+			statment.setInt(1, Integer.parseInt(timedelta));
+			if (sid !=null && sid>0) {
+				Category c = SubjectController.getCatgoryBySid(sid);
+				statment.setInt(2, c.getCid());
+				statment.setInt(3, sid);
+				statment.setInt(4, display_size);
+			}else {
+				statment.setInt(2, cid);
+				statment.setInt(3, display_size);
+			}
+			ResultSet resultset = statment.executeQuery();
+			List<Topic> tids = new ArrayList<Topic>();
+			while (resultset.next()) {
+				int tid = resultset.getInt(1);
+				String tname = resultset.getString(2);
+//				int fsid = resultset.getInt(3);
+				Topic t = new Topic();
+				t.setId(tid);
+				t.setTname(tname);
+				tids.add(t);
+			}
+			
+			return tids;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
+	
+	public static List<Topic> pachongList(String tname,
+			 String type,
+			String cid,
+			 String sid,
+			int start_page,
+			int page_size)	throws IOException {
+		Topic topic = new Topic();
+		topic.setCid((cid == null)?0:Integer.parseInt(cid));
+		topic.setSid((sid == null)?0:Integer.parseInt(sid));
+		topic.setTname(tname);
+		topic.setType((type == null)?0:Integer.parseInt(type));
+		Connection conn = DBConnector.getConnection();
+		try {
+			conn.setAutoCommit(false);
+				List<Topic> list = listTopic(conn, topic, start_page, page_size);
+				for (Topic t : list) {
+					// 此处是给用户模糊查询用。不应该显示答案。
+					t.setAnswer(null);
+					t.setAnalysis(null);
+				}
+				return list;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		return null;
+	}
 }

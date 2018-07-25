@@ -1,4 +1,4 @@
-env: product
+env: test
 test:
     db:
         jdbcUrl: jdbc:mysql://127.0.0.1:3306/bullet?characterEncoding=utf-8
@@ -12,17 +12,19 @@ test:
         max_query: 100
         hottopic_display_size: 20
         hottopic_time: 180
+        domain: "127.0.0.1:8080"
 product:
     db:
-        jdbcUrl: jdbc:mysql://127.0.0.1:3306/bullet?characterEncoding=utf-8
+        jdbcUrl: jdbc:mysql://47.94.105.245:3306/bullet?characterEncoding=utf-8
         user: admin
         password: AdminDaanlook2018!@#
         driver: com.mysql.jdbc.Driver
     redis:
-        host: 127.0.0.1
+        host: 47.94.105.245
         port:6379
     config:
         max_query: 100
         hottopic_display_size: 20
         hottopic_time: 180
+        domain: "http://www.daanlook.com"
 

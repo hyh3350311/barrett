@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.exam.bean.Category;
 import com.exam.bean.ReturnObject;
@@ -162,5 +163,53 @@ public class SubjectController {
 			e.printStackTrace();
 		}
 		return c;
+	}
+	public static Category getCatgoryBySid(int sid) {
+		Connection conn = DBConnector.getConnection();
+		String sql = "select sid ,sname,cid from subject where sid=?";
+		Category c = new Category();
+		try {
+			PreparedStatement statment = conn.prepareStatement(sql);
+			statment.setInt(1, sid);
+			ResultSet resultset = statment.executeQuery();
+			while (resultset.next()) {
+				c.setCid(resultset.getInt(3));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return c;
+	}
+	public static List<Subject> listSubject(String ctid) throws IOException {
+		if (ctid == null) {
+			return null;
+		}
+		Connection conn = null;
+		try {
+			conn = DBConnector.getConnection();
+			String sql = "select s.sid,s.sname,s.cid,c.cname,s.ob,c.ob from bullet.subject s join category c on s.cid=c.cid order by c.ob,s.ob,s.sid";
+			if (ctid != null && !ctid.equals("")) {
+				sql = "select s.sid,s.sname,s.cid,c.cname,s.ob,c.ob from bullet.subject s join category c on s.cid=c.cid and c.cid="+ctid+" order by c.ob,s.ob,s.sid";
+			}
+			PreparedStatement statment = conn.prepareStatement(sql);
+			ResultSet resultset = statment.executeQuery();
+			List<Subject> list = new ArrayList<Subject>();
+			while (resultset.next()) {
+				Subject c = new Subject();
+				c.setSid(resultset.getInt(1));
+				c.setCid(resultset.getInt(3));
+				c.setSname(resultset.getString(2));
+				c.setOrder(resultset.getInt(5));
+				list.add(c);
+			}
+			
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Utils.closeConnection(conn);
+		}
+		return null;
 	}
 }

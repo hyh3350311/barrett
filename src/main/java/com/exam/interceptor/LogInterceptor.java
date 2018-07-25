@@ -28,6 +28,7 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 		response.setHeader("Access-Control-Allow-Headers", "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With,userId,token,Access-Control-Allow-Headers");  
 		response.setHeader("Access-Control-Allow-Credentials", "true");  
 		response.setHeader("XDomainRequestAllowed","1"); 
+		response.setCharacterEncoding("UTF-8");
 //		if (user == null) {
 //			ReturnObject m = new ReturnObject();
 //			m.setCode(202);

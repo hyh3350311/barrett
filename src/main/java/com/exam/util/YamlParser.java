@@ -36,6 +36,7 @@ public class YamlParser {
 			Config.getConfig().setHottopic_display_szie((Integer)com_config.get("hottopic_display_size"));
 			
 			Config.getConfig().setHottopic_time((Integer)com_config.get("hottopic_time"));
+			Config.getConfig().setDomain((String)com_config.get("domain"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} 
